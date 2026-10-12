@@ -66,8 +66,8 @@ ${bold('退出码')}
   0 = 成功或无需处理   1 = 处理失败   2 = 用法错误
 
 ${bold('例子')}
-  node tools/faststart.mjs D:\\videos\\kt.mp4
-  node tools/faststart.mjs kt.mp4 -o kt-opt.mp4 -y
+  例如：node tools/faststart.mjs <输入.mp4>
+  例如：node tools/faststart.mjs <输入.mp4> -o <输出.mp4> -y
 `
 
 /* ---------------------------------------------------------------- 参数解析 */

@@ -11,12 +11,14 @@ set "NODE="
 where node >nul 2>nul
 if %errorlevel%==0 set "NODE=node"
 if not defined NODE if exist "%HERE%node.exe" set "NODE=%HERE%node.exe"
-if not defined NODE if exist "D:\ai_DSH_plugin\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\node\bin\node.exe" set "NODE=D:\ai_DSH_plugin\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\node\bin\node.exe"
 
 if not defined NODE (
   echo.
   echo   [错误] 找不到 node.exe
-  echo   办法：把 node.exe 复制到本文件旁边
+  echo   办法一：安装 Node.js 后重新打开本窗口（推荐）
+  echo     winget install --id OpenJS.NodeJS.LTS -e
+  echo   办法二：下载免安装版，把 node.exe 复制到本文件旁边
+  echo     下载地址 https://nodejs.org/
   echo.
   pause
   exit /b 1

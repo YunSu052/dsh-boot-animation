@@ -112,8 +112,8 @@ function findFfmpeg() {
   for (const p of [join(HERE, 'ffmpeg.exe'), join(HERE, 'bin', 'ffmpeg.exe')]) {
     if (existsSync(p)) return p
   }
-  // 2) 常见安装位置（winget 装到 D:\Programs\ffmpeg）
-  for (const root of ['D:\\Programs\\ffmpeg', 'C:\\Programs\\ffmpeg', 'D:\\ffmpeg', 'C:\\ffmpeg']) {
+  // 2) 常见安装位置（winget 装到 C:\Programs\ffmpeg 或 D:\Programs\ffmpeg）
+  for (const root of ['C:\\Programs\\ffmpeg', 'D:\\Programs\\ffmpeg', 'C:\\ffmpeg', 'D:\\ffmpeg']) {
     if (!existsSync(root)) continue
     const hit = searchFor(root, 'ffmpeg.exe', 4)
     if (hit !== '') return hit
@@ -172,9 +172,10 @@ if (args.files.length === 0) fail(`缺少输入文件。\n\n${USAGE}`, EXIT_USAG
   const r = spawnSync(ffmpeg, ['-version'], { encoding: 'utf8' })
   if (r.status !== 0) {
     fail(
-      `找不到可用的 ffmpeg（试过：${ffmpeg}）。\n` +
-      `  装法：winget install --id BtbN.FFmpeg.GPL --location D:\\Programs\\ffmpeg\n` +
-      `  或把 ffmpeg.exe 放到本脚本旁边。`,
+      `找不到可用的 ffmpeg。\n` +
+      `  装法一：winget install --id BtbN.FFmpeg.GPL -e\n` +
+      `  装法二：把 ffmpeg.exe 放到本脚本旁边\n` +
+      `  下载地址 https://github.com/BtbN/FFmpeg-Builds/releases （选 win64-gpl 的 zip）`,
     )
   }
 }
